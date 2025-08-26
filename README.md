@@ -23,7 +23,7 @@ pip install pygame
 
 ## Usage
 ```bash
-python MNR 1.py
+python MNR_1.py
 ```
 
 You will be prompted to select a MIDI input device.  
