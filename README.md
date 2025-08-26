@@ -1,7 +1,7 @@
 # MIDI Note Recognition
 
 Python program for real-time MIDI input and output.  
-Connect a MIDI keyboard and see the note, velocity, and duration printed in the terminal.
+Connect a MIDI keyboard and see the note, velocity, and duration printed in the python terminal.
 
 ---
 
