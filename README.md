@@ -1,25 +1,73 @@
-# MIDI Note Recognition 
+# MIDI Note Recognition
 
-A lightweight Python tool for **real-time MIDI input reading on Windows**.  
-It listens to your connected MIDI keyboard and prints out the **note name, velocity, and how long each key was held** directly in the terminal.  
-
-Perfect for learning how MIDI works, debugging keyboards, or as a base for music-related projects.  
+Python program for real-time MIDI input and output.  
+Connect a MIDI keyboard and see the note, velocity, and duration printed in the terminal.
 
 ---
 
 ## Features
-- Lists all available MIDI input devices  
-- Prints **Note On/Off** events, note name, velocity, and duration  
-- Uses `pygame.midi` (simple, no compiler headaches on Windows)  
-- Runs instantly — no extra setup needed  
+- Lists available MIDI input devices
+- Displays note on/off with velocity and hold time
+- Built using `pygame.midi` for simple Windows support
 
 ---
 
 ## Installation
-
-Clone this repository and install the only dependency:
-
 ```bash
 git clone https://github.com/zakariakubica/midi-note-recognition.git
 cd midi-note-recognition
 pip install pygame
+```
+
+---
+
+## Usage
+```bash
+python midi_reader.py
+```
+
+You will be prompted to select a MIDI input device.  
+Press Enter to use the first one automatically.
+
+---
+
+## Example Output (highlighted)
+```bash
+devices:
+  1: IN=1 OUT=0  MMSystem :: MIDIIN2 (Keystation 49e)
+  2: IN=0 OUT=1  MMSystem :: MIDIOUT2 (Keystation 49e)
+enter midi INPUT device index (or 'list'):
+(using first input index: 1)
+opening input 1 ...
+ready. Ctrl+C to stop.
+
+ON  C4 60 vel=100
+OFF C4 60 vel=0 held 0.42s
+ON  F#3 54 vel=96
+OFF F#3 54 vel=0 held 0.18s
+```
+
+---
+
+## Example Output (plain, unbashed)
+```
+devices:
+  1: IN=1 OUT=0  MMSystem :: MIDIIN2 (Keystation 49e)
+  2: IN=0 OUT=1  MMSystem :: MIDIOUT2 (Keystation 49e)
+
+ON  C4 60 vel=100
+OFF C4 60 vel=0 held 0.42s
+```
+
+---
+
+## Roadmap
+- Export note events to CSV with timestamps
+- Add command-line flag for auto-selecting a device
+- Optional audio playback of notes
+- Cross-platform testing (macOS/Linux)
+
+---
+
+## License
+MIT License © 2025 Zakaria Kubica
