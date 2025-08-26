@@ -1,23 +1,22 @@
-# very simple midi reader (windows tested)
-# usage: run it, pick the input number, press keys
-# depends: pygame (pip install pygame)
+# simple midi reader (windows tested)
+# uses pygame (pip install pygame)
 
 import time
 import pygame.midi as pm
 
 NOTE_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
-pressed = {}  # note_number -> time.time() when pressed
+pressed = {}  # active notes
 
 def note_name(n):
-    # not worrying about weird ranges, just basic mapping
+    # basic mapping
     return NOTE_NAMES[n % 12] + str((n // 12) - 1)  # C4 = 60
 
 def list_devices():
     count = pm.get_count()
     if count <= 0:
-        print("no midi devices found")
+        print("No midi devices found")
         return
-    print("devices:")
+    print("Devices:")
     for i in range(count):
         interf, name, is_in, is_out, opened = pm.get_device_info(i)
         try:
@@ -29,34 +28,41 @@ def list_devices():
         print(f"  {i}: IN={is_in} OUT={is_out}  {interf} :: {name}")
 
 def pick_input():
-    # try to find the first input automatically
+    # choose input device
     count = pm.get_count()
-    first_in = None
+    if count <= 0:
+        raise RuntimeError("no midi input devices available")
+
+    # find first input
+    first_input = None
     for i in range(count):
-        _, _, is_in, _, _ = pm.get_device_info(i)
-        if is_in == 1:
-            first_in = i
+        info = pm.get_device_info(i)
+        is_input = info[2]
+        if is_input == 1:
+            first_input = i
             break
 
-    user = input(f"enter midi INPUT device index (or 'list'): ").strip()
-    if user.lower() == "list":
+    # ask user
+    choice = input("enter midi INPUT device index (or 'list'): ").strip()
+
+    if choice.lower() == "list":
         list_devices()
-        user = input("enter midi INPUT device index: ").strip()
+        choice = input("enter midi INPUT device index: ").strip()
 
-    if user == "":
-        if first_in is None:
+    if choice == "":
+        if first_input is None:
             raise RuntimeError("no midi input devices available")
-        print(f"(using first input index: {first_in})")
-        return first_in
+        print(f"(using first input index: {first_input})")
+        return first_input
 
+    # fallback
     try:
-        idx = int(user)
-        return idx
-    except:
-        print("not a number, falling back to first input")
-        if first_in is None:
+        return int(choice)
+    except ValueError:
+        print("not a number, using first input")
+        if first_input is None:
             raise RuntimeError("no midi input devices available")
-        return first_in
+        return first_input
 
 def parse(status, d1, d2):
     # returns ('on' or 'off', note, velocity) or (None, None, None)
@@ -119,3 +125,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
