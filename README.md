@@ -48,21 +48,6 @@ OFF C4 60 vel=0 held 0.42s
 ON  F#3 54 vel=96
 OFF F#3 54 vel=0 held 0.18s
 ```
-
----
-
-## Example Output (plain, unbashed)
-```
-devices:
-  0: IN=0 OUT=1  MMSystem :: Microsoft MIDI Mapper
-  1: IN=1 OUT=0  MMSystem :: MPK mini 3
-  2: IN=0 OUT=1  MMSystem :: Microsoft GS Wavetable Synth
-  3: IN=0 OUT=1  MMSystem :: MPK mini 3
-
-ON  C4 60 vel=100
-OFF C4 60 vel=0 held 0.42s
-```
-
 ---
 
 ## Roadmap
