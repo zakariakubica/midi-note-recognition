@@ -23,7 +23,7 @@ pip install pygame
 
 ## Usage
 ```bash
-python midi_reader.py
+python MNR 1.py
 ```
 
 You will be prompted to select a MIDI input device.  
@@ -34,8 +34,10 @@ Press Enter to use the first one automatically.
 ## Example Output (highlighted)
 ```bash
 devices:
-  1: IN=1 OUT=0  MMSystem :: MIDIIN2 (Keystation 49e)
-  2: IN=0 OUT=1  MMSystem :: MIDIOUT2 (Keystation 49e)
+  0: IN=0 OUT=1  MMSystem :: Microsoft MIDI Mapper
+  1: IN=1 OUT=0  MMSystem :: MPK mini 3
+  2: IN=0 OUT=1  MMSystem :: Microsoft GS Wavetable Synth
+  3: IN=0 OUT=1  MMSystem :: MPK mini 3
 enter midi INPUT device index (or 'list'):
 (using first input index: 1)
 opening input 1 ...
@@ -52,8 +54,10 @@ OFF F#3 54 vel=0 held 0.18s
 ## Example Output (plain, unbashed)
 ```
 devices:
-  1: IN=1 OUT=0  MMSystem :: MIDIIN2 (Keystation 49e)
-  2: IN=0 OUT=1  MMSystem :: MIDIOUT2 (Keystation 49e)
+  0: IN=0 OUT=1  MMSystem :: Microsoft MIDI Mapper
+  1: IN=1 OUT=0  MMSystem :: MPK mini 3
+  2: IN=0 OUT=1  MMSystem :: Microsoft GS Wavetable Synth
+  3: IN=0 OUT=1  MMSystem :: MPK mini 3
 
 ON  C4 60 vel=100
 OFF C4 60 vel=0 held 0.42s
